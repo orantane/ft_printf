@@ -6,13 +6,13 @@
 /*   By: orantane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 11:42:31 by orantane          #+#    #+#             */
-/*   Updated: 2020/01/29 15:06:16 by orantane         ###   ########.fr       */
+/*   Updated: 2020/02/05 17:25:35 by orantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-t_data		*print_s_width(t_data *data, size_t s_len, char *s)
+static t_data		*print_s_width(t_data *data, size_t s_len, char *s)
 {
 	int len;
 	int i;
@@ -43,7 +43,7 @@ t_data		*print_s_width(t_data *data, size_t s_len, char *s)
 	return (data);
 }
 
-t_data		*convert_s(t_data *data)
+t_data			*convert_s(t_data *data)
 {
 	int		i;
 	size_t	len;

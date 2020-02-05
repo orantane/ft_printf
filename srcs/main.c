@@ -6,7 +6,7 @@
 /*   By: orantane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 13:05:36 by orantane          #+#    #+#             */
-/*   Updated: 2020/01/29 15:32:13 by orantane         ###   ########.fr       */
+/*   Updated: 2020/02/05 17:26:31 by orantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,15 @@
 int		main()
 {
 	int		i;
+	double	z = 2;
+	int		x = 2501;
 	char	s1[] = "I'm a string!";
 	char	s2[] = "Me too!";
 	char	c = 'C';
 
-	ft_printf("String -> %20.2s, another one  -> %.5s. Print char %c.\n", s1, s2, c);
+	ft_printf("Address is %12p & %12p\n", s2, s1);
 	printf("What my printf produced. What real printf produces is below.\n");
-	i = printf("String -> %20.2s, another one  -> %.5s. Print char %c.\n", s1, s2, c);
+	i = printf("Address is %12p & %12p\n", s2, s1);
 	printf("%d\n", i);
 	return (0);
 }

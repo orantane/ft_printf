@@ -6,7 +6,7 @@
 /*   By: orantane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 14:56:56 by orantane          #+#    #+#             */
-/*   Updated: 2020/02/04 17:44:51 by orantane         ###   ########.fr       */
+/*   Updated: 2020/02/05 16:48:23 by orantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ static char		*ft_rev(char *str, int neg)
 	return (rev);
 }
 
-static char		*ft_hexa(int num, char *str, int neg)
+static char		*ft_hexa(long int num, char *str, int neg)
 {
-	int		i;
-	int		temp;
+	int			i;
+	long int	temp;
 
 	i = -1;
 	if (num < 0)
@@ -56,16 +56,14 @@ static char		*ft_hexa(int num, char *str, int neg)
 	return (ft_rev(str, neg));
 }
 
-char			*ft_itoa_base(int num, int base)
+char			*ft_itoa_base(long int num, int base)
 {
-	int		i;
 	char	*str;
 	size_t	len;
 	int		neg;
 
 	neg = 0;
 	len = 100;
-	i = 0;
 	if (base == 0)
 		return (NULL);
 	if (base == 10)

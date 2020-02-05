@@ -6,7 +6,7 @@
 /*   By: orantane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 14:36:36 by orantane          #+#    #+#             */
-/*   Updated: 2020/02/03 18:53:02 by orantane         ###   ########.fr       */
+/*   Updated: 2020/02/05 17:25:45 by orantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ t_data				*convert_s(t_data *data);
 t_data				*convert_c(t_data *data);
 t_data				*convert_i(t_data *data);
 t_data				*convert_d(t_data *data);
-t_data				*print_s_width(t_data *data, size_t len, char *s);
 t_data				*format_struct(t_data *data);
 t_data				*print_text(t_data *data);
 t_data				*fill_struct(t_data *data);
