@@ -6,7 +6,7 @@
 /*   By: orantane <orantane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 14:23:10 by orantane          #+#    #+#             */
-/*   Updated: 2020/01/29 15:31:35 by orantane         ###   ########.fr       */
+/*   Updated: 2020/02/29 19:57:53 by orantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,13 @@ t_data	*reformat_struct(t_data *data)
 
 	i = -1;
 	data->j = 0;
+	data->minus = 0;
+	data->plus = 0;
+	data->hash = 0;
+	data->space = 0;
+	data->zero = 0;
 	data->precision = -1;
+	data->conversion_size = ft_strnew(4);
 	data->field_width = 0;
 	data->conversion_flag = '\0';
 	while (++i < 51)
@@ -58,13 +64,19 @@ t_data	*format_struct(t_data *data)
 	data->len = 0;
 	data->i = 0;
 	data->j = 0;
+	data->plus = 0;
+	data->minus = 0;
+	data->hash = 0;
+	data->space = 0;
+	data->zero = 0;
 	data->conversion_error = 1;
 	data->conversion_flag = '\0';
 	data->precision = -1;
 	data->field_width = 0;
+	data->conversion_size = ft_strnew(4);
 	data->type = "cCsSpdDioOuUxXf";
 	data->flags = "#0-+ ";
-	data->size = "hlL";
+	data->size = "hhllL";
 	while (++i < 51)
 		data->conversion[i] = '\0';
 	return (data);
@@ -94,7 +106,7 @@ int		ft_printf(const char *format, ...)
 		data->i++;
 	}
 	ret = data->len;
-	printf("Conversion string = %s, Precision = %ld, ret = %d.\n", data->conversion, data->precision, ret);
+	printf("Conversion string = %s, Field Width = %d, Precision = %ld, ret = %d, size = %s.\n", data->conversion, data->field_width, data->precision, ret, data->conversion_size);
 	va_end(data->args);
 	free(data);
 	return (ret);

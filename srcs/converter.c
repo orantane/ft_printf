@@ -6,7 +6,7 @@
 /*   By: orantane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 15:21:06 by orantane          #+#    #+#             */
-/*   Updated: 2020/01/29 12:31:34 by orantane         ###   ########.fr       */
+/*   Updated: 2020/02/06 15:26:24 by orantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ t_data	*converter(t_data *data)
 		data = convert_p(data);
 	if (data->conversion_flag == 'd')
 		data = convert_d(data);
+	if (data->conversion_flag == 'x' || data->conversion_flag == 'X')
+		data = convert_x(data);
 	if (data->conversion_flag == 'i')
 		data = convert_i(data);
 	return (data);

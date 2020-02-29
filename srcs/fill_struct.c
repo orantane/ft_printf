@@ -6,7 +6,7 @@
 /*   By: orantane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 12:27:33 by orantane          #+#    #+#             */
-/*   Updated: 2020/01/29 11:42:17 by orantane         ###   ########.fr       */
+/*   Updated: 2020/02/29 20:02:48 by orantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,9 @@ t_data	*fill_size(t_data *data)
 {
 	int		i;
 	int		size;
+	int		j;
 
+	j = 0;
 	i = -1;
 	size = 6;
 	while (--size)
@@ -71,6 +73,8 @@ t_data	*fill_size(t_data *data)
 		if (data->size[++i] == data->format[data->i])
 		{
 			data->conversion[data->j] = data->format[data->i];
+			data->conversion_size[j] = data->format[data->i];
+			j++;
 			data->j++;
 			data->i++;
 		}
@@ -125,5 +129,6 @@ t_data	*fill_flag(t_data *data)
 			}
 		}
 	}
+	data = fill_flags(data);
 	return (data);
 }

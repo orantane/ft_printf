@@ -6,7 +6,7 @@
 /*   By: orantane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 11:42:31 by orantane          #+#    #+#             */
-/*   Updated: 2020/02/05 17:20:45 by orantane         ###   ########.fr       */
+/*   Updated: 2020/02/06 15:15:36 by orantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ t_data				*convert_p(t_data *data)
 
 	ptr = (unsigned long int *)va_arg(data->args, void *);
 	addr = (unsigned long int)ptr;
-	hex_str = ft_itoa_base(addr, 16);
+	hex_str = ft_itoa_base(addr, 16, 'a');
 	hex_str = ft_strjoin("0x", hex_str);
 	len = ft_strlen(hex_str);
 	data = print_p_width(data, hex_str, len);
