@@ -6,7 +6,7 @@
 /*   By: orantane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 16:45:02 by orantane          #+#    #+#             */
-/*   Updated: 2020/02/28 18:25:27 by orantane         ###   ########.fr       */
+/*   Updated: 2020/03/05 03:39:21 by orantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int					ft_strcmp(const char *s1, const char *s2);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
 size_t				ft_strlen(const char *s);
 char				*ft_strnew(size_t size);
-char				*ft_itoa(int n);
+char				*ft_itoa(long long int n);
 char				*ft_itoa_base(long long int num, int base, int caps);
 char				**ft_strsplit(char const *s, char c);
 char				*ft_strtrim(char const *s);

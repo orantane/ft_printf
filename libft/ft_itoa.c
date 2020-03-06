@@ -6,17 +6,17 @@
 /*   By: orantane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 13:02:06 by orantane          #+#    #+#             */
-/*   Updated: 2019/11/15 18:16:42 by orantane         ###   ########.fr       */
+/*   Updated: 2020/03/05 03:48:09 by orantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
-static	char	*make_string(int modulo, char *str, int n, int len)
+static	char	*make_string(long long int modulo, char *str, long long int n,
+								long long int len)
 {
-	int		neg;
-	int		i;
+	int				neg;
+	long long int	i;
 
 	neg = 1;
 	i = len;
@@ -37,7 +37,7 @@ static	char	*make_string(int modulo, char *str, int n, int len)
 	return (str);
 }
 
-static int		calculate_malloc(int n)
+static int		calculate_malloc(long long int n)
 {
 	int i;
 
@@ -52,16 +52,16 @@ static int		calculate_malloc(int n)
 	return (i);
 }
 
-char			*ft_itoa(int n)
+char			*ft_itoa(long long int n)
 {
 	char			*str;
-	int				modulo;
-	int				len;
+	long long int	modulo;
+	long long int	len;
 
 	modulo = 0;
-	if (n == -2147483648)
+	if (n == -9223372036854775807)
 	{
-		str = "-2147483648";
+		str = "-9223372036854775807";
 		str = ft_strdup(str);
 		return (str);
 	}

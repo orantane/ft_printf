@@ -6,7 +6,7 @@
 /*   By: orantane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 13:30:06 by orantane          #+#    #+#             */
-/*   Updated: 2020/02/29 21:15:13 by orantane         ###   ########.fr       */
+/*   Updated: 2020/03/05 04:25:08 by orantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ int		main()
 	int		i;
 	int		x;
 	
-	x = 353;
-	i = (int)ft_strlen(str);
-	printf("This is i % .5d\n", x, i);
+	x = 0;
+	printf("This is i %#10.0x\n", x);
 	return (0);
 }

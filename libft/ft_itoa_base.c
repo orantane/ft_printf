@@ -6,7 +6,7 @@
 /*   By: orantane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 14:56:56 by orantane          #+#    #+#             */
-/*   Updated: 2020/02/28 18:25:13 by orantane         ###   ########.fr       */
+/*   Updated: 2020/03/06 06:12:19 by orantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ static char		*ft_hexa_caps(long long int num, char *str, int neg)
 	return (ft_rev(str, neg));
 }
 
-static char		*ft_hexa(long long int num, char *str, int neg)
+static char		*ft_hexa(unsigned long long int num, char *str, int neg,
+							int base)
 {
 	int				i;
 	long long int	temp;
@@ -70,12 +71,12 @@ static char		*ft_hexa(long long int num, char *str, int neg)
 	while (num != 0)
 	{
 		temp = 0;
-		temp = num % 16;
+		temp = num % base;
 		if (temp < 10)
 			str[++i] = temp + '0';
 		else
 			str[++i] = temp - 10 + 'a';
-		num = num / 16;
+		num = num / base;
 	}
 	return (ft_rev(str, neg));
 }
@@ -90,12 +91,14 @@ char			*ft_itoa_base(long long int num, int base, int caps)
 	len = 100;
 	if (base == 0)
 		return (NULL);
+	if (num == 0)
+		return (ft_itoa(num));
 	if (base == 10)
 		return (ft_itoa(num));
 	str = ft_strnew(len);
 	if (base == 16 && caps < 96)
 		str = ft_hexa_caps(num, str, neg);
-	if (base == 16 && (!caps || caps > 96))
-		str = ft_hexa(num, str, neg);
+	if (base == 16 || base == 8)
+		str = ft_hexa(num, str, neg, base);
 	return (str);
 }

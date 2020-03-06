@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   core.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: orantane <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: orantane <orantane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 12:45:35 by orantane          #+#    #+#             */
-/*   Updated: 2020/02/29 21:32:03 by orantane         ###   ########.fr       */
+/*   Updated: 2020/03/05 07:27:41 by orantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,16 @@ void	print_char(t_data *data)
 
 t_data	*print_number(t_data *data, char *str)
 {
-	ft_putstr(str);
-	data->len += (int)ft_strlen(str);
+	if (data->num_val == 0 && data->precision != 0)
+	{
+		write(1, "0", 1);
+		data->len++;
+	}
+	else if (data->num_val != 0)
+	{
+		ft_putstr(str);
+		data->len += (int)ft_strlen(str);
+	}
 	return (data);
 }
 

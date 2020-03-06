@@ -6,7 +6,7 @@
 /*   By: orantane <orantane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 14:23:10 by orantane          #+#    #+#             */
-/*   Updated: 2020/02/29 19:57:53 by orantane         ###   ########.fr       */
+/*   Updated: 2020/03/06 06:10:58 by orantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_data	*fill_struct(t_data *data)
 {
 	int 	i;
 
-	i = data->i + 1;	
+	i = data->i + 1;
 	if (data->format[data->i] == '%' && data->format[i] == '%')
 	{
 		print_char(data);
@@ -47,6 +47,10 @@ t_data	*reformat_struct(t_data *data)
 	data->hash = 0;
 	data->space = 0;
 	data->zero = 0;
+	data->hex = 0;
+	data->base = 10;
+	data->num_val = 0;
+	data->negative = 0;
 	data->precision = -1;
 	data->conversion_size = ft_strnew(4);
 	data->field_width = 0;
@@ -69,6 +73,7 @@ t_data	*format_struct(t_data *data)
 	data->hash = 0;
 	data->space = 0;
 	data->zero = 0;
+	data->hex = 0;
 	data->conversion_error = 1;
 	data->conversion_flag = '\0';
 	data->precision = -1;
@@ -106,7 +111,7 @@ int		ft_printf(const char *format, ...)
 		data->i++;
 	}
 	ret = data->len;
-	printf("Conversion string = %s, Field Width = %d, Precision = %ld, ret = %d, size = %s.\n", data->conversion, data->field_width, data->precision, ret, data->conversion_size);
+	printf("Conversion string = %s, Field Width = %d, Precision = %ld, ret = %d, size = %s, num_len = %d.\n", data->conversion, data->field_width, data->precision, ret, data->conversion_size, data->num_len);
 	va_end(data->args);
 	free(data);
 	return (ret);
