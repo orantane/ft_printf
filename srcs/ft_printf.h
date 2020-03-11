@@ -6,16 +6,27 @@
 /*   By: orantane <orantane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 14:36:36 by orantane          #+#    #+#             */
-/*   Updated: 2020/03/06 06:09:20 by orantane         ###   ########.fr       */
+/*   Updated: 2020/03/11 15:27:03 by orantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#ifndef ft_printf_H
+# define ft_printf_H
 
 # include "../libft/libft.h"
 # include <stdarg.h>
 # include <stdlib.h>
+
+typedef struct		s_double
+{
+	int				pres;
+	char			*temp;
+	int				rounded;
+	double			d;
+	double			d_copy;
+	long double		ld;
+	long double		ld_copy;
+}					t_double;
 
 typedef struct		s_data
 {
@@ -50,13 +61,13 @@ t_data				*convert_p(t_data *data);
 t_data				*convert_s(t_data *data);
 t_data				*convert_c(t_data *data);
 t_data				*convert_d_i(t_data *data);
-t_data				*convert_x(t_data *data);
-t_data				*convert_X(t_data *data);
-t_data				*convert_o(t_data *data);
+t_data				*convert_x(t_data *data, char *str);
+t_data				*convert_xc(t_data *data, char *str);
 t_data				*convert_u(t_data *data);
 t_data				*convert_f(t_data *data);
 t_data				*format_struct(t_data *data);
 t_data				*number_flags(t_data *data, char *str);
+t_data				*double_flags(t_data *data, t_double *dub);
 t_data				*handle_hashtag(t_data *data, char *str);
 t_data				*do_precision(t_data *data);
 t_data				*fill_flags(t_data *data);
@@ -70,6 +81,5 @@ t_data				*print_text(t_data *data);
 t_data				*print_number(t_data *data, char *str);
 void				print_char(t_data *data);
 int					ft_printf(const char *format, ...);
-
 
 #endif

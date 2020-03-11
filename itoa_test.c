@@ -19,6 +19,6 @@ int		main()
 	char *str;
 
 	str = ft_itoa_base(i, 16);
-	printf("Result for %d: %s\n", i, str);
+	//printf("Result for %d: %s\n", i, str);
 	return (0);
 }

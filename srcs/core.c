@@ -6,7 +6,7 @@
 /*   By: orantane <orantane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 12:45:35 by orantane          #+#    #+#             */
-/*   Updated: 2020/03/05 07:27:41 by orantane         ###   ########.fr       */
+/*   Updated: 2020/03/06 07:40:00 by orantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,14 @@ void	print_char(t_data *data)
 
 t_data	*print_number(t_data *data, char *str)
 {
-	if (data->num_val == 0 && data->precision != 0)
+	if (data->hex == 1 && data->precision != 0 && str[0] == '0')
+	{
+		write(1, "0", 1);
+		data->len++;
+		free(str);
+		return (data);
+	}
+	if (data->num_val == 0 && data->precision != 0 && data->hex == 0)
 	{
 		write(1, "0", 1);
 		data->len++;
@@ -36,6 +43,12 @@ t_data	*print_number(t_data *data, char *str)
 		ft_putstr(str);
 		data->len += (int)ft_strlen(str);
 	}
+	else if (data->hex == 1 && data->num_val == 0 && str[0] != '0')
+	{
+		ft_putstr(str);
+		data->len += (int)ft_strlen(str);
+	}
+	free(str);
 	return (data);
 }
 
@@ -46,7 +59,7 @@ t_data	*print_text(t_data *data)
 	if (data->format[data->i] != '\0')
 	{
 		print_char(data);
-		data->len ++;
+		data->len++;
 	}
 	return (data);
 }

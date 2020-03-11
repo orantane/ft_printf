@@ -6,7 +6,7 @@
 /*   By: orantane <orantane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 12:27:33 by orantane          #+#    #+#             */
-/*   Updated: 2020/03/01 20:15:47 by orantane         ###   ########.fr       */
+/*   Updated: 2020/03/06 07:30:14 by orantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ t_data	*fill_precision(t_data *data)
 	return (data);
 }
 
-/* 
+/*
 ** No error checking in this function yet. Need to add it later.
 */
 
@@ -95,7 +95,7 @@ t_data	*fill_type(t_data *data)
 	found = 0;
 	while (data->type[++i])
 	{
-	 	if(data->type[i] == data->format[data->i])
+		if (data->type[i] == data->format[data->i])
 		{
 			data->conversion_flag = data->format[data->i];
 			data->conversion[data->j] = data->format[data->i];

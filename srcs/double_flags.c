@@ -1,29 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   double_flags.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: orantane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/22 13:05:36 by orantane          #+#    #+#             */
-/*   Updated: 2020/03/11 15:31:18 by orantane         ###   ########.fr       */
+/*   Created: 2020/03/07 08:49:53 by orantane          #+#    #+#             */
+/*   Updated: 2020/03/07 08:54:58 by orantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
-int		main()
+t_data		*double_flags(t_data *data, t_double *dub)
 {
-	int		i;
-	double	z = -123.999999999;
-	long long int		x = -399;
-	char	s1[] = "I'm a string!";
-	char	s2[] = "Me too!";
-	char	c = 'C';
-
-	ft_printf("Double is: %f <--My version.\n", z);
-	i = printf("Double is: %f <--What it should be.\n", z);
-	printf("%d\n", i);
-	return (0);
+	return (data);
 }

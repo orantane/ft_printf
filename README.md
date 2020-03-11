@@ -1,2 +1,2 @@
 # ft_printf
-School project to recode printf.
+School project to recode //printf.

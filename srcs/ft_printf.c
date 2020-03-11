@@ -6,7 +6,7 @@
 /*   By: orantane <orantane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 14:23:10 by orantane          #+#    #+#             */
-/*   Updated: 2020/03/06 06:10:58 by orantane         ###   ########.fr       */
+/*   Updated: 2020/03/06 07:46:00 by orantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 t_data	*fill_struct(t_data *data)
 {
-	int 	i;
+	int	i;
 
 	i = data->i + 1;
 	if (data->format[data->i] == '%' && data->format[i] == '%')
@@ -111,7 +111,7 @@ int		ft_printf(const char *format, ...)
 		data->i++;
 	}
 	ret = data->len;
-	printf("Conversion string = %s, Field Width = %d, Precision = %ld, ret = %d, size = %s, num_len = %d.\n", data->conversion, data->field_width, data->precision, ret, data->conversion_size, data->num_len);
+	//printf("Conversion string = %s, Field Width = %d, Precision = %ld, ret = %d, size = %s, num_len = %d.\n", data->conversion, data->field_width, data->precision, ret, data->conversion_size, data->num_len);
 	va_end(data->args);
 	free(data);
 	return (ret);

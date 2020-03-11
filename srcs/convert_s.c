@@ -6,18 +6,16 @@
 /*   By: orantane <orantane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 11:42:31 by orantane          #+#    #+#             */
-/*   Updated: 2020/03/01 20:14:43 by orantane         ###   ########.fr       */
+/*   Updated: 2020/03/06 07:28:19 by orantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static t_data		*print_s_width(t_data *data, size_t s_len, char *s)
+static t_data	*print_s_width(t_data *data, size_t s_len, char *s, int i)
 {
 	int len;
-	int i;
 
-	i = -1;
 	len = (int)s_len;
 	if (len < data->field_width && data->conversion[0] == '-')
 	{
@@ -49,7 +47,9 @@ t_data			*convert_s(t_data *data)
 	size_t	len;
 	char	*s;
 	int		no_pre;
+	int		x;
 
+	x = -1;
 	no_pre = -1;
 	i = 0;
 	s = va_arg(data->args, char *);
@@ -62,7 +62,7 @@ t_data			*convert_s(t_data *data)
 	if (data->precision == no_pre && !s)
 		s = ft_strdup("\0");
 	len = ft_strlen(s);
-	data = print_s_width(data, len, s);
+	data = print_s_width(data, len, s, x);
 	data->len = data->len + (int)len;
 	free(s);
 	return (data);

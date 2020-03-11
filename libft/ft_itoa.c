@@ -6,7 +6,7 @@
 /*   By: orantane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 13:02:06 by orantane          #+#    #+#             */
-/*   Updated: 2020/03/05 03:48:09 by orantane         ###   ########.fr       */
+/*   Updated: 2020/03/11 15:12:20 by orantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static	char	*make_string(long long int modulo, char *str, long long int n,
 		neg = neg * -1;
 		n = n * -1;
 	}
-	while (n != 0)
+	while (n >= 1)
 	{
 		modulo = n % 10;
 		str[--i] = modulo + '0';
@@ -43,8 +43,11 @@ static int		calculate_malloc(long long int n)
 
 	i = 0;
 	if (n < 0)
+	{	
 		i++;
-	while (n != 0)
+		n = n * -1;
+	}
+	while (n >= 1)
 	{
 		n = n / 10;
 		i++;

@@ -6,11 +6,33 @@
 /*   By: orantane <orantane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 15:21:06 by orantane          #+#    #+#             */
-/*   Updated: 2020/03/06 06:09:23 by orantane         ###   ########.fr       */
+/*   Updated: 2020/03/06 07:26:56 by orantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+t_data			*fill_flags(t_data *data)
+{
+	int		i;
+
+	i = 0;
+	while (data->conversion[i] != '\0')
+	{
+		if (data->conversion[i] == '#')
+			data->hash = 1;
+		if (data->conversion[i] == '-')
+			data->minus = 1;
+		if (data->conversion[i] == '+')
+			data->plus = 1;
+		if (data->conversion[i] == ' ')
+			data->space = 1;
+		if (data->conversion[i] == '0')
+			data->zero = 1;
+		i++;
+	}
+	return (data);
+}
 
 static t_data	*converter_2(t_data *data)
 {
@@ -29,23 +51,26 @@ static t_data	*converter_2(t_data *data)
 
 t_data			*converter(t_data *data)
 {
+	char *str;
+
+	str = ft_strnew(50);
 	if (data->conversion_flag == 'x')
 	{
 		data->hex = 1;
 		data->base = 16;
-		data = convert_X(data);
+		data = convert_x(data, str);
 	}
 	if (data->conversion_flag == 'X')
 	{
 		data->hex = 1;
 		data->base = 16;
-		data = convert_x(data);
+		data = convert_xc(data, str);
 	}
 	if (data->conversion_flag == 'o')
 	{
 		data->hex = 1;
 		data->base = 8;
-		data = convert_x(data);
+		data = convert_x(data, str);
 	}
 	if (data->conversion_flag == 'f')
 		data = convert_f(data);
