@@ -6,7 +6,7 @@
 /*   By: orantane <orantane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 14:36:36 by orantane          #+#    #+#             */
-/*   Updated: 2020/03/11 15:27:03 by orantane         ###   ########.fr       */
+/*   Updated: 2020/03/12 15:17:57 by orantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ typedef struct		s_double
 {
 	int				pres;
 	char			*temp;
-	int				rounded;
+	int				neg;
 	double			d;
 	double			d_copy;
 	long double		ld;
@@ -67,7 +67,7 @@ t_data				*convert_u(t_data *data);
 t_data				*convert_f(t_data *data);
 t_data				*format_struct(t_data *data);
 t_data				*number_flags(t_data *data, char *str);
-t_data				*double_flags(t_data *data, t_double *dub);
+t_data				*double_flags(t_data *data, t_double *dub, char *str);
 t_data				*handle_hashtag(t_data *data, char *str);
 t_data				*do_precision(t_data *data);
 t_data				*fill_flags(t_data *data);
@@ -79,6 +79,7 @@ t_data				*fill_width(t_data *data);
 t_data				*fill_flag(t_data *data);
 t_data				*print_text(t_data *data);
 t_data				*print_number(t_data *data, char *str);
+char				*do_rounding(char *str, t_double *dub, t_data *data, int len);
 void				print_char(t_data *data);
 int					ft_printf(const char *format, ...);
 

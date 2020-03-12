@@ -6,13 +6,23 @@
 /*   By: orantane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 08:36:30 by orantane          #+#    #+#             */
-/*   Updated: 2019/11/02 21:47:53 by orantane         ###   ########.fr       */
+/*   Updated: 2020/03/12 17:20:36 by orantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_atoi(const char *str)
+static int	check_zero(int i, const char *str)
+{
+	if ((i - 2) < 0)
+		return (0);
+	if ((str[i] > 47 && str[i] < 58 && str[i - 1] == 43 && str[i - 2] == 43) ||
+		(str[i] > 47 && str[i] < 58 && str[i - 1] == 45 && str[i - 2] == 43))
+		return (1);
+	return (0);
+}
+
+int			ft_atoi(const char *str)
 {
 	int r;
 	int s;
@@ -28,8 +38,7 @@ int		ft_atoi(const char *str)
 		s = -1;
 		i++;
 	}
-	if ((str[i] > 47 && str[i] < 58 && str[i - 1] == 43 && str[i - 2] == 43) ||
-		(str[i] > 47 && str[i] < 58 && str[i - 1] == 45 && str[i - 2] == 43))
+	if ((check_zero(i, str)))
 		return (0);
 	while (str[i] != '\0')
 	{

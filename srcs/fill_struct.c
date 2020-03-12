@@ -6,7 +6,7 @@
 /*   By: orantane <orantane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 12:27:33 by orantane          #+#    #+#             */
-/*   Updated: 2020/03/06 07:30:14 by orantane         ###   ########.fr       */
+/*   Updated: 2020/03/12 17:22:16 by orantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,11 @@
 
 t_data	*fill_width(t_data *data)
 {
+	char	*str;
+
 	if (data->format[(data->i - 1)] != '.')
 	{
-		data->field_width = ft_atoi(&data->format[data->i]);
+		data->field_width = (long int)ft_atoi(&data->format[data->i]);
 		while (data->format[data->i] < 58 && data->format[data->i] > 47)
 		{
 			data->conversion[data->j] = data->format[data->i];

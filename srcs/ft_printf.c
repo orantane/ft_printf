@@ -6,7 +6,7 @@
 /*   By: orantane <orantane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 14:23:10 by orantane          #+#    #+#             */
-/*   Updated: 2020/03/06 07:46:00 by orantane         ###   ########.fr       */
+/*   Updated: 2020/03/12 16:14:32 by orantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ t_data	*format_struct(t_data *data)
 	data->field_width = 0;
 	data->conversion_size = ft_strnew(4);
 	data->type = "cCsSpdDioOuUxXf";
-	data->flags = "#0-+ ";
+	data->flags = "#0+- ";
 	data->size = "hhllL";
 	while (++i < 51)
 		data->conversion[i] = '\0';
@@ -113,6 +113,6 @@ int		ft_printf(const char *format, ...)
 	ret = data->len;
 	//printf("Conversion string = %s, Field Width = %d, Precision = %ld, ret = %d, size = %s, num_len = %d.\n", data->conversion, data->field_width, data->precision, ret, data->conversion_size, data->num_len);
 	va_end(data->args);
-	free(data);
+	//free(data);
 	return (ret);
 }
