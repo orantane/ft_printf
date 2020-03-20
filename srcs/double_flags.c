@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
+
 static t_data	*do_plus(t_data *data, char *str)
 {
 	if (data->plus == 1 && data->negative == 0)
@@ -69,7 +69,6 @@ t_data		*double_flags(t_data *data, t_double *dub, char *str)
 	if (data->zero == 0)
 		data = do_plus(data, str);
 	data = print_number(data, str);
-	printf("\n%d is field width & num len = %d\n", data->field_width, data->num_len);
 	if (data->minus == 1)
 		data = handle_width_right(data);
 	return (data);

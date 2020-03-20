@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
 static t_double	*init_dub(t_double *dub, t_data *data)
 {
