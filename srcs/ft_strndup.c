@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_strndub.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: orantane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/18 17:11:33 by orantane          #+#    #+#             */
-/*   Updated: 2019/11/07 00:38:13 by orantane         ###   ########.fr       */
+/*   Created: 2020/01/29 12:22:52 by orantane          #+#    #+#             */
+/*   Updated: 2020/01/29 12:27:47 by orantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-void	ft_putstr(char const *s)
+char	*ft_strndup(const char *s1, size_t x)
 {
-	int i;
+	size_t	i;
+	char	*s2;
 
+	i = ft_strlen(s1);
+	if (i > x)
+		i = x;
+	if (!(s2 = (char *)malloc(sizeof(char) * (i + 1))))
+		return (NULL);
 	i = 0;
-	if (!s)
-		return ;
-	while (s[i] != '\0')
+	while (s1[i] && i < x)
 	{
-		ft_putchar(s[i]);
+		s2[i] = s1[i];
 		i++;
 	}
+	s2[i] = '\0';
+	return (s2);
 }

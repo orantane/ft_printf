@@ -13,9 +13,9 @@
 #ifndef ft_printf_H
 # define ft_printf_H
 
-# include "../libft/libft.h"
 # include <stdarg.h>
 # include <stdlib.h>
+# include <unistd.h>
 
 typedef struct		s_double
 {
@@ -56,6 +56,17 @@ typedef struct		s_data
 	char			*size;
 }					t_data;
 
+int					ft_atoi(const char *str);
+char				*ft_itoa(long long int n);
+char				*ft_itoa_base(unsigned long long int num, int base,
+					int caps);
+void				ft_putchar(char c);
+void				ft_putstr(char const *s);
+size_t				ft_strlen(const char *s);
+char				*ft_strdup(const char *s1);
+char				*ft_strndup(const char *s1, size_t x);
+char				*ft_strnew(size_t size);
+char				*ft_strjoin(char const *s1, char const *s2);
 t_data				*converter(t_data *data);
 t_data				*convert_p(t_data *data);
 t_data				*convert_s(t_data *data);

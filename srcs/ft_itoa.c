@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
 static	char	*make_string(long long int modulo, char *str, long long int n,
 								long long int len)
