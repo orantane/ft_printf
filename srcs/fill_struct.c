@@ -18,8 +18,6 @@
 
 t_data	*fill_width(t_data *data)
 {
-	char	*str;
-
 	if (data->format[(data->i - 1)] != '.')
 	{
 		data->field_width = (long int)ft_atoi(&data->format[data->i]);

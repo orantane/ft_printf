@@ -10,29 +10,24 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libft//printf.a
+NAME = libftprintf.a
 
-SRC_DIR = ./srcs/
+SRC = srcs/*.c
 
-SRC_NAME = 
+OBJ = srcs/*.o
 
-SRC = $(addprefix $(SRC_DIR),$(SRC_NAME))
-
-OBJ = $(SRC_NAME:%.c=%.o)
-
-LIB = libft/libft.a
-
-HEADER = 
+HEADER = srcs/ft_printf.h
 
 FLAGS = -Wall -Wextra -Werror
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	make -C libft/
-	gcc $(FLAGS) -o $(NAME) $(OBJ) $(LIB) -I $(HEADER)
+$(NAME):
+	gcc $(FLAGS) -o $(NAME) $(OBJE) $(SRC) -I $(HEADER)
+	ar rc $(NAME) $(OBJ)
+	ranlib $(NAME)
 
-$(OBJ):
+$(OBJE):
 	gcc $(FLAGS) -c $(SRC)
 
 re: fclean all

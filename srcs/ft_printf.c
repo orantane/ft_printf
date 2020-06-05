@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
 t_data	*fill_struct(t_data *data)
 {
@@ -111,8 +110,6 @@ int		ft_printf(const char *format, ...)
 		data->i++;
 	}
 	ret = data->len;
-	//printf("Conversion string = %s, Field Width = %d, Precision = %ld, ret = %d, size = %s, num_len = %d.\n", data->conversion, data->field_width, data->precision, ret, data->conversion_size, data->num_len);
 	va_end(data->args);
-	//free(data);
 	return (ret);
 }

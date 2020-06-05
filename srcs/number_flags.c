@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-static t_data	*do_plus(t_data *data, char *str)
+static t_data	*do_plus(t_data *data)
 {
 	if (data->plus == 1 && data->negative == 0)
 	{
@@ -27,7 +27,7 @@ static t_data	*do_plus(t_data *data, char *str)
 	return (data);
 }
 
-static t_data	*handle_width_right(t_data *data, char *str)
+static t_data	*handle_width_right(t_data *data)
 {
 	while (data->field_width > data->precision && data->field_width >
 			data->num_len)
@@ -42,7 +42,7 @@ static t_data	*handle_width_right(t_data *data, char *str)
 	return (data);
 }
 
-static t_data	*handle_width(t_data *data, char *str)
+static t_data	*handle_width(t_data *data)
 {
 	if (data->negative == 1 && data->minus == 0)
 		data->field_width--;
@@ -67,16 +67,16 @@ static t_data	*number_flags_cont(t_data *data, char *str)
 	if ((data->plus == 1 || data->space == 1) && data->negative == 0)
 		data->field_width -= 1;
 	if (data->zero == 1)
-		data = do_plus(data, str);
-	data = handle_width(data, str);
+		data = do_plus(data);
+	data = handle_width(data);
 	if (data->zero == 0)
-		data = do_plus(data, str);
+		data = do_plus(data);
 	data = do_precision(data);
 	if (data->negative == 1)
 		str++;
 	data = print_number(data, str);
 	if (data->minus == 1)
-		data = handle_width_right(data, str);
+		data = handle_width_right(data);
 	return (data);
 }
 

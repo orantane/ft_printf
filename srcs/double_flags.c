@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-static t_data	*do_plus(t_data *data, char *str)
+static t_data	*do_plus(t_data *data)
 {
 	if (data->plus == 1 && data->negative == 0)
 	{
@@ -38,7 +38,7 @@ static t_data	*handle_width_right(t_data *data)
 	return (data);
 }
 
-static t_data	*handle_width(t_data *data, char *str)
+static t_data	*handle_width(t_data *data)
 {
 	if (data->minus == 0)
 	{
