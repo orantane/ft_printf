@@ -14,7 +14,7 @@ NAME = libftprintf.a
 
 SRC = srcs/*.c
 
-OBJ = srcs/*.o
+OBJ = *.o
 
 HEADER = srcs/ft_printf.h
 
@@ -23,21 +23,16 @@ FLAGS = -Wall -Wextra -Werror
 all: $(NAME)
 
 $(NAME):
-	gcc $(FLAGS) -o $(NAME) $(OBJE) $(SRC) -I $(HEADER)
+	gcc $(FLAGS) -c $(SRC) -I $(HEADER)
 	ar rc $(NAME) $(OBJ)
 	ranlib $(NAME)
-
-$(OBJE):
-	gcc $(FLAGS) -c $(SRC)
 
 re: fclean all
 
 clean:
 	rm -rf $(OBJ)
-	make clean -C libft/
 
 fclean: clean
 	rm -rf $(NAME)
-	make fclean -C libft/
 
 .PHONY = all re clean fclean

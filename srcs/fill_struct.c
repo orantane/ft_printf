@@ -49,8 +49,6 @@ t_data	*fill_precision(t_data *data)
 			data->j++;
 			data->i++;
 		}
-		if (data->precision == -1)
-			data->conversion_error = 0;
 	}
 	return (data);
 }
@@ -93,7 +91,7 @@ t_data	*fill_type(t_data *data)
 
 	i = -1;
 	found = 0;
-	while (data->type[++i])
+	while (data->type[++i] && found == 0)
 	{
 		if (data->type[i] == data->format[data->i])
 		{

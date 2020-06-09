@@ -14,24 +14,12 @@
 
 t_data	*fill_struct(t_data *data)
 {
-	int	i;
-
-	i = data->i + 1;
-	if (data->format[data->i] == '%' && data->format[i] == '%')
-	{
-		print_char(data);
-		data->len++;
-		data->i++;
-	}
-	else
-	{
-		data = fill_flag(data);
-		data = fill_width(data);
-		data = fill_precision(data);
-		data = fill_size(data);
-		data = fill_type(data);
-		data = converter(data);
-	}
+	data = fill_flag(data);
+	data = fill_width(data);
+	data = fill_precision(data);
+	data = fill_size(data);
+	data = fill_type(data);
+	data = converter(data);
 	return (data);
 }
 
@@ -49,6 +37,7 @@ t_data	*reformat_struct(t_data *data)
 	data->hex = 0;
 	data->base = 10;
 	data->num_val = 0;
+	data->conversion_error = 1;
 	data->negative = 0;
 	data->precision = -1;
 	data->conversion_size = ft_strnew(4);
@@ -78,7 +67,7 @@ t_data	*format_struct(t_data *data)
 	data->precision = -1;
 	data->field_width = 0;
 	data->conversion_size = ft_strnew(4);
-	data->type = "cCsSpdDioOuUxXf";
+	data->type = "cCsSpdDioOuUxXf%";
 	data->flags = "#0+- ";
 	data->size = "hhllL";
 	while (++i < 51)

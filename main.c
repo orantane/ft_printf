@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: orantane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/22 11:01:01 by orantane          #+#    #+#             */
-/*   Updated: 2019/11/07 01:21:51 by orantane         ###   ########.fr       */
+/*   Created: 2020/01/22 13:05:36 by orantane          #+#    #+#             */
+/*   Updated: 2020/03/12 17:18:05 by orantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-
-char	*ft_strdup(const char *s1)
+#include "srcs/ft_printf.h"
+#include <stdio.h>
+int		main()
 {
-	size_t	i;
-	char	*s2;
+	int		i;
+	int		d;
+	long double		z = 123;
+	long long int		x = -399;
+	char	s1[] = "I'm a string!";
+	char	s2[] = "Me too!";
+	char	c = 'C';
 
-	i = ft_strlen(s1);
-	if (!(s2 = (char *)malloc(sizeof(char) * (i + 1))))
-		return (NULL);
-	i = 0;
-	while (s1[i] != '\0')
-	{
-		s2[i] = s1[i];
-		i++;
-	}
-	s2[i] = '\0';
-	return (s2);
+	d = ft_printf("Double is: %-3%\n");
+	i = printf("Double is: %-3%\n");
+	printf("%d ft, %d norm\n", d, i);
+	return (0);
 }

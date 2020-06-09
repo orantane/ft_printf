@@ -78,7 +78,7 @@ t_data				*convert_u(t_data *data);
 t_data				*convert_f(t_data *data);
 t_data				*format_struct(t_data *data);
 t_data				*number_flags(t_data *data, char *str);
-t_data				*double_flags(t_data *data, t_double *dub, char *str);
+t_data				*double_flags(t_data *data, char *str);
 t_data				*handle_hashtag(t_data *data, char *str);
 t_data				*do_precision(t_data *data);
 t_data				*fill_flags(t_data *data);

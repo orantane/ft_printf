@@ -55,7 +55,7 @@ static t_data	*handle_width(t_data *data)
 	return (data);
 }
 
-t_data		*double_flags(t_data *data, t_double *dub, char *str)
+t_data		*double_flags(t_data *data, char *str)
 {
 	data->num_len = (int)ft_strlen(str);
 	data->num_val = ft_atoi(str);
@@ -64,10 +64,10 @@ t_data		*double_flags(t_data *data, t_double *dub, char *str)
 	if ((data->plus == 1 || data->space == 1) && str[0] != '-')
 		data->field_width -= 1;
 	if (data->zero == 1)
-		data = do_plus(data, str);
-	data = handle_width(data, str);
+		data = do_plus(data);
+	data = handle_width(data);
 	if (data->zero == 0)
-		data = do_plus(data, str);
+		data = do_plus(data);
 	data = print_number(data, str);
 	if (data->minus == 1)
 		data = handle_width_right(data);

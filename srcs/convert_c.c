@@ -12,19 +12,50 @@
 
 #include "ft_printf.h"
 
-t_data		*convert_c(t_data *data)
+static t_data	*print_c_width(t_data *data, char c, int i)
 {
-	int		i;
-	int		x;
-	char	c;
+	int	len;
 
-	i = 0;
-	x = va_arg(data->args, int);
-	c = (unsigned char)x;
-	if (data->precision != 0 && c)
+	len = 1;
+	if (len < data->field_width && data->conversion[0] == '-')
 	{
 		ft_putchar(c);
-		data->len++;
+		while (len < data->field_width)
+		{
+			write(1, " ", 1);
+			data->len++;
+			len++;
+		}
 	}
+	else if (len < data->field_width && data->conversion[0] != '-')
+	{
+		while ((len + ++i) < data->field_width)
+		{
+			write(1, " ", 1);
+			data->len++;
+		}
+		ft_putchar(c);
+	}
+	else
+		ft_putchar(c);
+	data->len++;
+	return (data);
+}
+
+t_data			*convert_c(t_data *data)
+{
+	int		x;
+	int		i;
+	char	c;
+
+	i = -1;
+	if (data->conversion_flag == '%')
+		c = '%';
+	else
+	{
+		x = va_arg(data->args, int);
+		c = (unsigned char)x;
+	}
+	data = print_c_width(data, c, i);
 	return (data);
 }

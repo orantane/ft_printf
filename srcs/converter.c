@@ -36,7 +36,7 @@ t_data			*fill_flags(t_data *data)
 
 static t_data	*converter_2(t_data *data)
 {
-	if (data->conversion_flag == 'c')
+	if (data->conversion_flag == 'c' || data->conversion_flag == '%')
 		data = convert_c(data);
 	if (data->conversion_flag == 's')
 		data = convert_s(data);

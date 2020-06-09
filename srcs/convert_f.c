@@ -28,7 +28,7 @@ static t_double	*init_dub(t_double *dub, t_data *data)
 	return (dub);
 }
 
-static t_double	*double_string_ld(t_double *dub, t_data *data)
+static char		*double_string_ld(t_double *dub, t_data *data)
 {
 	char	*str;
 	int		len;
@@ -43,10 +43,10 @@ static t_double	*double_string_ld(t_double *dub, t_data *data)
 	else
 		dub->neg = 0;
 	str = do_rounding(str, dub, data, len);
-	return (dub);
+	return (str);
 }
 
-char			*double_string_d(t_double *dub, t_data *data)
+static char		*double_string_d(t_double *dub, t_data *data)
 {
 	char	*str;
 	int		len;
@@ -75,7 +75,7 @@ t_data			*convert_f(t_data *data)
 	{
 		dub->ld = (va_arg(data->args, long double));
 		dub = init_dub(dub, data);
-		dub = double_string_ld(dub, data);
+		str = double_string_ld(dub, data);
 	}
 	else
 	{
@@ -83,6 +83,6 @@ t_data			*convert_f(t_data *data)
 		dub = init_dub(dub, data);
 		str = double_string_d(dub, data);
 	}
-	data = double_flags(data, dub, str);
+	data = double_flags(data, str);
 	return (data);
 }
