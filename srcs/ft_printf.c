@@ -6,7 +6,7 @@
 /*   By: orantane <orantane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 14:23:10 by orantane          #+#    #+#             */
-/*   Updated: 2020/03/12 16:14:32 by orantane         ###   ########.fr       */
+/*   Updated: 2020/06/10 20:48:39 by orantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,15 +88,18 @@ int		ft_printf(const char *format, ...)
 	data->format = format;
 	va_start(data->args, format);
 	data = format_struct(data);
-	while (format[data->i] != '\0')
+	while (data->format[data->i] != '\0')
 	{
-		if (format[data->i] == '%')
+		if (data->format[data->i] == '%')
 		{
 			data = reformat_struct(data);
 			data = fill_struct(data);
 		}
-		data = print_text(data);
-		data->i++;
+		else
+		{
+			data = print_text(data);
+			data->i++;
+		}
 	}
 	ret = data->len;
 	va_end(data->args);

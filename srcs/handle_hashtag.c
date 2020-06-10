@@ -6,7 +6,7 @@
 /*   By: orantane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 02:13:13 by orantane          #+#    #+#             */
-/*   Updated: 2020/03/06 07:29:17 by orantane         ###   ########.fr       */
+/*   Updated: 2020/06/10 21:12:53 by orantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static t_data	*do_field_width(t_data *data, char *str)
 	while (data->field_width > data->num_len &&
 			data->field_width > data->precision)
 	{
-		if (data->zero == 1 && data->precision != 0)
+		if (data->zero == 1 && data->precision != 0 && data->minus == 0)
 			write(1, "0", 1);
 		else
 			write(1, " ", 1);
@@ -82,10 +82,12 @@ static t_data	*do_field_width(t_data *data, char *str)
 
 t_data			*handle_hashtag(t_data *data, char *str)
 {
-	if (data->minus == 0)
+	if (data->minus == 0 && data->zero == 0)
 		data = do_field_width(data, str);
 	if (str[0] != '0')
 		data = print_hashtag(data);
+	if (data->minus == 0 && data->zero == 1)
+		data = do_field_width(data, str);
 	if (data->precision > 0)
 		data = do_precision(data);
 	if (str[0] != '0')

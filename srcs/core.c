@@ -6,7 +6,7 @@
 /*   By: orantane <orantane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 12:45:35 by orantane          #+#    #+#             */
-/*   Updated: 2020/03/12 15:23:58 by orantane         ###   ########.fr       */
+/*   Updated: 2020/06/10 20:03:26 by orantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ t_data	*print_number(t_data *data, char *str)
 		ft_putstr(str);
 		data->len += (int)ft_strlen(str);
 	}
-//	free(str);
 	return (data);
 }
 

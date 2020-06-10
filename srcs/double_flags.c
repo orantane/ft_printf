@@ -6,7 +6,7 @@
 /*   By: orantane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 08:49:53 by orantane          #+#    #+#             */
-/*   Updated: 2020/03/12 16:06:16 by orantane         ###   ########.fr       */
+/*   Updated: 2020/06/10 19:15:05 by orantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static t_data	*handle_width(t_data *data)
 	return (data);
 }
 
-t_data		*double_flags(t_data *data, char *str)
+t_data			*double_flags(t_data *data, char *str)
 {
 	data->num_len = (int)ft_strlen(str);
 	data->num_val = ft_atoi(str);

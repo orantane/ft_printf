@@ -6,7 +6,7 @@
 /*   By: orantane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 14:56:56 by orantane          #+#    #+#             */
-/*   Updated: 2020/03/06 06:26:10 by orantane         ###   ########.fr       */
+/*   Updated: 2020/06/10 20:58:32 by orantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,9 @@ char			*ft_itoa_base(unsigned long long int num, int base, int caps)
 	if (base == 10)
 		return (ft_itoa(num));
 	str = ft_strnew(len);
-	if (base == 16 && caps < 96)
+	if (base == 16 && caps < 97)
 		str = ft_hexa_caps(num, str);
-	if (base == 16 || base == 8)
+	else if (base == 16 || base == 8)
 		str = ft_hexa(num, str, base);
 	return (str);
 }

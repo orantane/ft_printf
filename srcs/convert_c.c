@@ -6,17 +6,14 @@
 /*   By: orantane <orantane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 11:42:31 by orantane          #+#    #+#             */
-/*   Updated: 2020/03/01 20:16:24 by orantane         ###   ########.fr       */
+/*   Updated: 2020/06/10 20:03:00 by orantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static t_data	*print_c_width(t_data *data, char c, int i)
+static t_data	*print_c_width(t_data *data, char c, int i, int len)
 {
-	int	len;
-
-	len = 1;
 	if (len < data->field_width && data->conversion[0] == '-')
 	{
 		ft_putchar(c);
@@ -47,7 +44,9 @@ t_data			*convert_c(t_data *data)
 	int		x;
 	int		i;
 	char	c;
+	int		len;
 
+	len = 1;
 	i = -1;
 	if (data->conversion_flag == '%')
 		c = '%';
@@ -56,6 +55,6 @@ t_data			*convert_c(t_data *data)
 		x = va_arg(data->args, int);
 		c = (unsigned char)x;
 	}
-	data = print_c_width(data, c, i);
+	data = print_c_width(data, c, i, len);
 	return (data);
 }

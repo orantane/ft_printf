@@ -6,12 +6,12 @@
 /*   By: orantane <orantane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 14:36:36 by orantane          #+#    #+#             */
-/*   Updated: 2020/03/12 15:17:57 by orantane         ###   ########.fr       */
+/*   Updated: 2020/06/10 20:42:11 by orantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ft_printf_H
-# define ft_printf_H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
 # include <stdarg.h>
 # include <stdlib.h>
@@ -90,7 +90,8 @@ t_data				*fill_width(t_data *data);
 t_data				*fill_flag(t_data *data);
 t_data				*print_text(t_data *data);
 t_data				*print_number(t_data *data, char *str);
-char				*do_rounding(char *str, t_double *dub, t_data *data, int len);
+char				*do_rounding(char *str, t_double *dub,
+					t_data *data, int len);
 void				print_char(t_data *data);
 int					ft_printf(const char *format, ...);
 
