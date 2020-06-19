@@ -32,7 +32,7 @@ static t_data	*handle_width_right(t_data *data)
 	while (data->field_width > data->precision && data->field_width >
 			data->num_len)
 	{
-		if (data->zero == 1 && data->precision != 0)
+		if (data->zero == 1 && data->precision != 0 && data->minus == 0)
 			write(1, "0", 1);
 		else
 			write(1, " ", 1);
@@ -99,6 +99,14 @@ t_data			*number_flags(t_data *data, char *str)
 		write(1, " ", 1);
 		data->len++;
 		data->field_width--;
+	}
+// This if statement below is faulty with some conditions.
+// Check the 42Cheker results. Handles pre = 0, value = 0 on hex and octals.
+	if (data->precision == 0 && str[0] == '0' && data->hex == 1 &&
+		data->hash == 0 && data->field_width > 0)
+	{
+		write(1, " ", 1);
+		data->len++;
 	}
 	return (number_flags_cont(data, str));
 }

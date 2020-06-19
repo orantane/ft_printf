@@ -58,9 +58,9 @@ t_data			*convert_s(t_data *data)
 	if (data->precision == no_pre && s)
 		s = ft_strdup(s);
 	if (data->precision > no_pre && !s)
-		s = ft_strndup(("\0"), data->precision);
+		s = ft_strndup(("(null)"), data->precision);
 	if (data->precision == no_pre && !s)
-		s = ft_strdup("\0");
+		s = ft_strdup("(null)");
 	len = ft_strlen(s);
 	data = print_s_width(data, len, s, x);
 	data->len = data->len + (int)len;
