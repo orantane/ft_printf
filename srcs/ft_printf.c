@@ -36,7 +36,7 @@ t_data	*reformat_struct(t_data *data)
 	data->zero = 0;
 	data->hex = 0;
 	data->base = 10;
-	data->num_val = 0;
+	data->num_val = 1;
 	data->conversion_error = 1;
 	data->negative = 0;
 	data->precision = -1;

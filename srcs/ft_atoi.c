@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-static int	check_zero(int i, const char *str)
+static int		check_zero(long long int i, const char *str)
 {
 	if ((i - 2) < 0)
 		return (0);
@@ -22,11 +22,11 @@ static int	check_zero(int i, const char *str)
 	return (0);
 }
 
-int			ft_atoi(const char *str)
+long long int	ft_atoi(const char *str)
 {
-	int r;
-	int s;
-	int i;
+	long long int r;
+	long long int s;
+	long long int i;
 
 	r = 0;
 	s = 1;

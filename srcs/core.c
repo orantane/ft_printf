@@ -22,6 +22,12 @@ void	print_char(t_data *data)
 
 t_data	*print_number(t_data *data, char *str)
 {
+	if (data->conversion_flag == 'o' && data->hash == 1 && str[0] == '0')
+	{
+		write(1, "0", 1);
+		data->len++;
+		return (data);
+	}
 	if (data->hex == 1 && data->precision != 0 && str[0] == '0')
 	{
 		write(1, "0", 1);

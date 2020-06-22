@@ -40,7 +40,7 @@ typedef struct		s_data
 	int				hash;
 	int				space;
 	int				num_len;
-	int				num_val;
+	long long int	num_val;
 	int				negative;
 	int				hex;
 	int				base;
@@ -56,7 +56,7 @@ typedef struct		s_data
 	char			*size;
 }					t_data;
 
-int					ft_atoi(const char *str);
+long long int		ft_atoi(const char *str);
 char				*ft_itoa(long long int n);
 char				*ft_itoa_base(unsigned long long int num, int base,
 					int caps);

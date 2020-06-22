@@ -14,12 +14,14 @@
 
 static t_data	*do_plus(t_data *data)
 {
-	if (data->plus == 1 && data->negative == 0)
+	if (data->plus == 1 && data->num_val > -1 &&
+		data->conversion_flag != 'u')
 	{
 		write(1, "+", 1);
 		data->len++;
 	}
-	else if (data->space == 1 && data->negative == 0)
+	else if (data->space == 1 && data->num_val > -1 &&
+			data->conversion_flag != 'u')
 	{
 		write(1, " ", 1);
 		data->len++;
@@ -44,14 +46,13 @@ static t_data	*handle_width_right(t_data *data)
 
 static t_data	*handle_width(t_data *data)
 {
-	if (data->negative == 1 && data->minus == 0)
-		data->field_width--;
 	if (data->minus == 0)
 	{
 		while (data->field_width > data->precision && data->field_width >
 				data->num_len)
 		{
-			if (data->zero == 1 && data->precision != 0 && data->num_val > -1)
+			if (data->zero == 1 && data->precision != 0 && data->negative != 1
+				&& data->precision < data->num_len)
 				write(1, "0", 1);
 			else
 				write(1, " ", 1);
@@ -66,6 +67,16 @@ static t_data	*number_flags_cont(t_data *data, char *str)
 {
 	if ((data->plus == 1 || data->space == 1) && data->negative == 0)
 		data->field_width -= 1;
+	if (data->zero == 1 && data->hex == 0 && data->negative == 1 &&
+		data->conversion_flag != 'u')
+	{
+		write(1, "-", 1);
+		data->len++;
+		data->field_width--;
+		data->negative = 0;
+		data->num_len--;
+		str++;
+	}
 	if (data->zero == 1)
 		data = do_plus(data);
 	data = handle_width(data);
@@ -83,7 +94,8 @@ static t_data	*number_flags_cont(t_data *data, char *str)
 t_data			*number_flags(t_data *data, char *str)
 {
 	data->num_len = (int)ft_strlen(str);
-	data->num_val = ft_atoi(str);
+	if (data->conversion_flag != 'u')
+		data->num_val = ft_atoi(str);
 	if (data->num_val < 0)
 		data->negative = 1;
 	if (data->num_val == 0 && data->precision == 0 && data->hex == 0)
@@ -94,7 +106,7 @@ t_data			*number_flags(t_data *data, char *str)
 		return (data);
 	}
 	if (data->precision == 0 && data->num_val == 0 && data->hex == 0 &&
-			data->plus == 0)
+			data->plus == 0 && data->conversion_flag != 'd')
 	{
 		write(1, " ", 1);
 		data->len++;
