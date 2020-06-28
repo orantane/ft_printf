@@ -28,7 +28,10 @@ static t_data	*print_c_width(t_data *data, char c, int i, int len)
 	{
 		while ((len + ++i) < data->field_width)
 		{
-			write(1, " ", 1);
+			if (data->zero == 1)
+				write(1, "0", 1);
+			else
+				write(1, " ", 1);
 			data->len++;
 		}
 		ft_putchar(c);

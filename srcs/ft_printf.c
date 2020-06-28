@@ -41,37 +41,19 @@ t_data	*reformat_struct(t_data *data)
 	data->negative = 0;
 	data->precision = -1;
 	data->conversion_size = ft_strnew(4);
+	data->conversion = ft_strnew(15);
 	data->field_width = 0;
 	data->conversion_flag = '\0';
-	while (++i < 51)
-		data->conversion[i] = '\0';
 	return (data);
 }
 
 t_data	*format_struct(t_data *data)
 {
-	int		i;
-
-	i = -1;
 	data->len = 0;
 	data->i = 0;
-	data->j = 0;
-	data->plus = 0;
-	data->minus = 0;
-	data->hash = 0;
-	data->space = 0;
-	data->zero = 0;
-	data->hex = 0;
-	data->conversion_error = 1;
-	data->conversion_flag = '\0';
-	data->precision = -1;
-	data->field_width = 0;
-	data->conversion_size = ft_strnew(4);
 	data->type = "cCsSpdDioOuUxXf%";
 	data->flags = "#0+- ";
 	data->size = "hhllL";
-	while (++i < 51)
-		data->conversion[i] = '\0';
 	return (data);
 }
 
@@ -94,6 +76,8 @@ int		ft_printf(const char *format, ...)
 		{
 			data = reformat_struct(data);
 			data = fill_struct(data);
+			free(data->conversion_size);
+			free(data->conversion);
 		}
 		else
 		{
@@ -103,5 +87,6 @@ int		ft_printf(const char *format, ...)
 	}
 	ret = data->len;
 	va_end(data->args);
+	free(data);
 	return (ret);
 }

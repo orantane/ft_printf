@@ -84,5 +84,6 @@ t_data			*convert_f(t_data *data)
 		str = double_string_d(dub, data);
 	}
 	data = double_flags(data, str);
+	free(str);
 	return (data);
 }

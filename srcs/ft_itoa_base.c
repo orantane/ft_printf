@@ -42,6 +42,7 @@ static char		*ft_hexa_caps(unsigned long long int num, char *str)
 			str[++i] = temp - 10 + 'A';
 		num = num / 16;
 	}
+	str[i + 1] = '\0';
 	return (ft_rev(str));
 }
 
@@ -61,25 +62,25 @@ static char		*ft_hexa(unsigned long long int num, char *str, int base)
 			str[++i] = temp - 10 + 'a';
 		num = num / base;
 	}
+	str[i + 1] = '\0';
 	return (ft_rev(str));
 }
 
 char			*ft_itoa_base(unsigned long long int num, int base, int caps)
 {
-	char	*str;
-	size_t	len;
+	char	*str_ret;
+	char	str[35];
 
-	len = 100;
+	str_ret = NULL;
 	if (base == 0)
 		return (NULL);
 	if (num == 0)
 		return (ft_itoa(num));
 	if (base == 10)
 		return (ft_itoa(num));
-	str = ft_strnew(len);
 	if (base == 16 && caps < 97)
-		str = ft_hexa_caps(num, str);
+		str_ret = ft_hexa_caps(num, str);
 	else if (base == 16 || base == 8)
-		str = ft_hexa(num, str, base);
-	return (str);
+		str_ret = ft_hexa(num, str, base);
+	return (str_ret);
 }

@@ -36,6 +36,7 @@ t_data	*convert_xc(t_data *data, char *str)
 		str = ft_itoa_base((unsigned int)va_arg(data->args, void *),
 				data->base, 41);
 	data = number_flags(data, str);
+	free(str);
 	return (data);
 }
 
@@ -63,5 +64,6 @@ t_data	*convert_x(t_data *data, char *str)
 		str = ft_itoa_base((unsigned int)va_arg(data->args, void *),
 				data->base, 'a');
 	data = number_flags(data, str);
+	free(str);
 	return (data);
 }

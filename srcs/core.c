@@ -32,7 +32,6 @@ t_data	*print_number(t_data *data, char *str)
 	{
 		write(1, "0", 1);
 		data->len++;
-		free(str);
 		return (data);
 	}
 	if (data->num_val == 0 && data->precision != 0 && data->hex == 0)

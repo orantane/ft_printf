@@ -62,9 +62,9 @@ char			*ft_itoa(long long int n)
 	long long int	len;
 
 	modulo = 0;
-	if (n == -9223372036854775807)
+	if (n == (-9223372036854775807 - 1))
 	{
-		str = "-9223372036854775807";
+		str = "-9223372036854775808";
 		str = ft_strdup(str);
 		return (str);
 	}

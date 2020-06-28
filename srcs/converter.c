@@ -72,6 +72,7 @@ t_data			*converter(t_data *data)
 		data->base = 8;
 		data = convert_x(data, str);
 	}
+	free(str);
 	if (data->conversion_flag == 'f')
 		data = convert_f(data);
 	return (converter_2(data));

@@ -20,7 +20,6 @@
 typedef struct		s_double
 {
 	int				pres;
-	char			*temp;
 	int				neg;
 	double			d;
 	double			d_copy;
@@ -49,7 +48,7 @@ typedef struct		s_data
 	long int		field_width;
 	va_list			args;
 	char			conversion_flag;
-	char			conversion[50];
+	char			*conversion;
 	char			*conversion_size;
 	char			*flags;
 	char			*type;

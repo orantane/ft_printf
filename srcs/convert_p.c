@@ -12,10 +12,12 @@
 
 #include "ft_printf.h"
 
-static t_data		*print_p_width(t_data *data, char *s, size_t s_len, int i)
+static t_data		*print_p_width(t_data *data, char *s, size_t s_len)
 {
 	int		len;
+	int		i;
 
+	i = -1;
 	len = (int)s_len;
 	if (len < data->field_width && data->conversion[0] == '-')
 	{
@@ -47,15 +49,16 @@ t_data				*convert_p(t_data *data)
 	unsigned long int	*ptr;
 	unsigned long int	addr;
 	size_t				len;
-	int					i;
+	char				*final;
 
-	i = -1;
 	ptr = (unsigned long int *)va_arg(data->args, void *);
 	addr = (unsigned long int)ptr;
 	hex_str = ft_itoa_base(addr, 16, 'a');
-	hex_str = ft_strjoin("0x", hex_str);
-	len = ft_strlen(hex_str);
-	data = print_p_width(data, hex_str, len, i);
+	final = ft_strjoin("0x", hex_str);
+	free(hex_str);
+	len = ft_strlen(final);
+	data = print_p_width(data, final, len);
+	free(final);
 	data->len += (int)len;
 	return (data);
 }

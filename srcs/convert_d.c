@@ -16,7 +16,6 @@ t_data		*convert_d_i(t_data *data)
 {
 	char	*str;
 
-	str = ft_strnew(50);
 	if (data->conversion_size[0] == 'h')
 	{
 		if (data->conversion_size[1] == 'h')
@@ -34,5 +33,6 @@ t_data		*convert_d_i(t_data *data)
 	else
 		str = ft_itoa((int)va_arg(data->args, void *));
 	data = number_flags(data, str);
+	free(str);
 	return (data);
 }

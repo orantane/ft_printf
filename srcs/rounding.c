@@ -36,6 +36,7 @@ static char	*final_str(char *nbr, int len, int neg)
 			str[i++] = '.';
 		str[i++] = nbr[j++];
 	}
+	free(nbr);
 	str[i] = '\0';
 	return (str);
 }

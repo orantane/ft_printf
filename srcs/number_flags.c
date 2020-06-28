@@ -53,7 +53,9 @@ static t_data	*handle_width(t_data *data)
 		{
 			if (data->zero == 1 && data->precision != 0 && data->negative != 1
 				&& data->precision < data->num_len)
+			{
 				write(1, "0", 1);
+			}
 			else
 				write(1, " ", 1);
 			data->field_width--;
@@ -112,8 +114,6 @@ t_data			*number_flags(t_data *data, char *str)
 		data->len++;
 		data->field_width--;
 	}
-// This if statement below is faulty with some conditions.
-// Check the 42Cheker results. Handles pre = 0, value = 0 on hex and octals.
 	if (data->precision == 0 && str[0] == '0' && data->hex == 1 &&
 		data->hash == 0 && data->field_width > 0)
 	{

@@ -40,8 +40,6 @@ t_data			*do_precision(t_data *data)
 	if (data->precision == 0)
 		return (data);
 	pre = data->precision;
-//	if (data->num_val == 0 && data->hex == 0)
-//		pre--;
 	if (data->negative == 1 && data->hex == 0)
 	{
 		write(1, "-", 1);
