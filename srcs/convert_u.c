@@ -6,7 +6,7 @@
 /*   By: orantane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 03:21:47 by orantane          #+#    #+#             */
-/*   Updated: 2020/03/05 04:04:47 by orantane         ###   ########.fr       */
+/*   Updated: 2020/06/28 06:44:28 by orantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ t_data		*convert_u(t_data *data)
 	}
 	else
 		str = make_string((unsigned int)va_arg(data->args, void *));
+	if (data->precision == 0 && str[0] == '0')
+		str[0] = '\0';
 	data = number_flags(data, str);
 	free(str);
 	return (data);

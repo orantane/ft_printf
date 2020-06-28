@@ -6,7 +6,7 @@
 /*   By: orantane <orantane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/29 19:50:39 by orantane          #+#    #+#             */
-/*   Updated: 2020/03/12 15:21:38 by orantane         ###   ########.fr       */
+/*   Updated: 2020/06/28 09:01:29 by orantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static t_data	*handle_width(t_data *data)
 		while (data->field_width > data->precision && data->field_width >
 				data->num_len)
 		{
-			if (data->zero == 1 && data->precision != 0 && data->negative != 1
+			if (data->zero == 1 && data->precision == -1
 				&& data->precision < data->num_len)
 			{
 				write(1, "0", 1);
@@ -69,15 +69,20 @@ static t_data	*number_flags_cont(t_data *data, char *str)
 {
 	if ((data->plus == 1 || data->space == 1) && data->negative == 0)
 		data->field_width -= 1;
-	if (data->zero == 1 && data->hex == 0 && data->negative == 1 &&
-		data->conversion_flag != 'u')
+	if (data->hex == 0 && data->negative == 1 && data->conversion_flag != 'u')
 	{
-		write(1, "-", 1);
-		data->len++;
-		data->field_width--;
-		data->negative = 0;
-		data->num_len--;
-		str++;
+		if (data->zero == 1 && data->precision == -1)
+		{
+			write(1, "-", 1);
+			data->len++;
+			data->field_width--;
+			data->negative = 0;
+			data->num_len--;
+			str++;
+		}
+		else if (data->field_width > data->precision &&
+				data->precision != -1 && data->precision >= data->num_len && data->minus == 0)
+			data->field_width--;
 	}
 	if (data->zero == 1)
 		data = do_plus(data);
@@ -108,7 +113,8 @@ t_data			*number_flags(t_data *data, char *str)
 		return (data);
 	}
 	if (data->precision == 0 && data->num_val == 0 && data->hex == 0 &&
-			data->plus == 0 && data->conversion_flag != 'd')
+		data->plus == 0 && data->conversion_flag != 'd' &&
+		data->conversion_flag != 'i')
 	{
 		write(1, " ", 1);
 		data->len++;
