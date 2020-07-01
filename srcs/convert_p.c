@@ -6,11 +6,22 @@
 /*   By: orantane <orantane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 11:42:31 by orantane          #+#    #+#             */
-/*   Updated: 2020/03/06 07:18:29 by orantane         ###   ########.fr       */
+/*   Updated: 2020/07/01 15:43:30 by orantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+static t_data		*print_p_cont(t_data *data, char *s, int len, int i)
+{
+	while ((len + ++i) < data->field_width)
+	{
+		write(1, " ", 1);
+		data->len++;
+	}
+	ft_putstr(s);
+	return (data);
+}
 
 static t_data		*print_p_width(t_data *data, char *s, size_t s_len)
 {
@@ -30,14 +41,7 @@ static t_data		*print_p_width(t_data *data, char *s, size_t s_len)
 		}
 	}
 	else if (len < data->field_width && data->conversion[0] != '-')
-	{
-		while ((len + ++i) < data->field_width)
-		{
-			write(1, " ", 1);
-			data->len++;
-		}
-		ft_putstr(s);
-	}
+		data = print_p_cont(data, s, len, i);
 	else if (len >= data->field_width)
 		ft_putstr(s);
 	return (data);

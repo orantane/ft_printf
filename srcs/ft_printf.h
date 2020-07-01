@@ -6,7 +6,7 @@
 /*   By: orantane <orantane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 14:36:36 by orantane          #+#    #+#             */
-/*   Updated: 2020/06/10 20:42:11 by orantane         ###   ########.fr       */
+/*   Updated: 2020/07/01 17:22:46 by orantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,10 @@
 
 typedef struct		s_double
 {
+	int				fix;
 	int				pres;
-	int				neg;
 	double			d;
-	double			d_copy;
 	long double		ld;
-	long double		ld_copy;
 }					t_double;
 
 typedef struct		s_data
@@ -53,6 +51,7 @@ typedef struct		s_data
 	char			*flags;
 	char			*type;
 	char			*size;
+	char			*d_str;
 }					t_data;
 
 long long int		ft_atoi(const char *str);
@@ -76,10 +75,14 @@ t_data				*convert_xc(t_data *data, char *str);
 t_data				*convert_u(t_data *data);
 t_data				*convert_f(t_data *data);
 t_data				*format_struct(t_data *data);
+t_double			*init_dub(t_double *dub, t_data *data);
 t_data				*number_flags(t_data *data, char *str);
 t_data				*double_flags(t_data *data, char *str);
 t_data				*handle_hashtag(t_data *data, char *str);
 t_data				*do_precision(t_data *data);
+t_data				*handle_width(t_data *data);
+t_data				*handle_width_right(t_data *data);
+t_data				*do_plus(t_data *data);
 t_data				*fill_flags(t_data *data);
 t_data				*fill_struct(t_data *data);
 t_data				*fill_type(t_data *data);
@@ -89,8 +92,10 @@ t_data				*fill_width(t_data *data);
 t_data				*fill_flag(t_data *data);
 t_data				*print_text(t_data *data);
 t_data				*print_number(t_data *data, char *str);
-char				*do_rounding(char *str, t_double *dub,
-					t_data *data, int len);
+char				*do_rounding(char *str, t_double *dub, t_data *data,
+					int len);
+char				*do_rounding_l(char *str, t_double *dub, t_data *data,
+					int len);
 void				print_char(t_data *data);
 int					ft_printf(const char *format, ...);
 

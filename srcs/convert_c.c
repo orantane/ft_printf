@@ -6,11 +6,25 @@
 /*   By: orantane <orantane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 11:42:31 by orantane          #+#    #+#             */
-/*   Updated: 2020/06/10 20:03:00 by orantane         ###   ########.fr       */
+/*   Updated: 2020/07/01 15:18:19 by orantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+static t_data	*print_c_cont(t_data *data, char c, int i, int len)
+{
+	while ((len + ++i) < data->field_width)
+	{
+		if (data->zero == 1)
+			write(1, "0", 1);
+		else
+			write(1, " ", 1);
+		data->len++;
+	}
+	ft_putchar(c);
+	return (data);
+}
 
 static t_data	*print_c_width(t_data *data, char c, int i, int len)
 {
@@ -25,17 +39,7 @@ static t_data	*print_c_width(t_data *data, char c, int i, int len)
 		}
 	}
 	else if (len < data->field_width && data->conversion[0] != '-')
-	{
-		while ((len + ++i) < data->field_width)
-		{
-			if (data->zero == 1)
-				write(1, "0", 1);
-			else
-				write(1, " ", 1);
-			data->len++;
-		}
-		ft_putchar(c);
-	}
+		data = print_c_cont(data, c, i, len);
 	else
 		ft_putchar(c);
 	data->len++;

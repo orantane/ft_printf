@@ -6,21 +6,14 @@
 /*   By: orantane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 05:11:36 by orantane          #+#    #+#             */
-/*   Updated: 2020/03/12 15:35:47 by orantane         ###   ########.fr       */
+/*   Updated: 2020/07/01 17:12:36 by orantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static t_double	*init_dub(t_double *dub, t_data *data)
+t_double		*init_dub(t_double *dub, t_data *data)
 {
-	double	zero;
-
-	zero = 0;
-	if (dub->ld != zero)
-		dub->ld_copy = dub->ld;
-	if (dub->d != zero)
-		dub->d_copy = dub->d;
 	if (data->precision == -1)
 		dub->pres = 7;
 	else
@@ -28,62 +21,61 @@ static t_double	*init_dub(t_double *dub, t_data *data)
 	return (dub);
 }
 
-static char		*double_string_ld(t_double *dub, t_data *data)
+static t_data	*double_string_ld(t_double *dub, t_data *data)
 {
-	char	*str;
-	int		len;
+	char		*temp;
+	int			len;
 
-	str = ft_itoa((long long int)dub->d_copy);
-	len = (int)ft_strlen(str);
-	if (dub->ld_copy < 0)
+	len = 0;
+	if (dub->ld < (long double)0.000000000000000000)
 	{
-		dub->ld_copy = dub->ld_copy * -1;
-		dub->neg = 1;
+		dub->ld = dub->ld * -1;
+		data->negative = 1;
+		data->field_width--;
 	}
-	else
-		dub->neg = 0;
-	str = do_rounding(str, dub, data, len);
-	return (str);
+	temp = ft_itoa((long long int)dub->ld);
+	data->d_str = do_rounding_l(temp, dub, data, len);
+	free(temp);
+	return (data);
 }
 
-static char		*double_string_d(t_double *dub, t_data *data)
+static t_data	*double_string_d(t_double *dub, t_data *data)
 {
-	char	*str;
+	char	*temp;
 	int		len;
 
-	str = ft_itoa((long long int)dub->d_copy);
-	len = (int)ft_strlen(str);
-	if (dub->d_copy < 0)
+	len = 0;
+	if (dub->d < (double)0.000000000000)
 	{
-		dub->d_copy = dub->d_copy * -1;
-		dub->neg = 1;
+		dub->d = dub->d * -1;
+		data->negative = 1;
+		data->field_width--;
 	}
-	else
-		dub->neg = 0;
-	str = do_rounding(str, dub, data, len);
-	return (str);
+	temp = ft_itoa((long long int)dub->d);
+	data->d_str = do_rounding(temp, dub, data, len);
+	free(temp);
+	return (data);
 }
 
 t_data			*convert_f(t_data *data)
 {
 	t_double	*dub;
-	char		*str;
 
 	if (!(dub = (t_double*)malloc(sizeof(dub))))
 		return (data);
+	dub = init_dub(dub, data);
+	dub->fix = 0;
 	if (data->conversion_size[0] == 'L')
 	{
 		dub->ld = (va_arg(data->args, long double));
-		dub = init_dub(dub, data);
-		str = double_string_ld(dub, data);
+		data = double_string_ld(dub, data);
 	}
 	else
 	{
 		dub->d = (va_arg(data->args, double));
-		dub = init_dub(dub, data);
-		str = double_string_d(dub, data);
+		data = double_string_d(dub, data);
 	}
-	data = double_flags(data, str);
-	free(str);
+	data = double_flags(data, data->d_str);
+	free(data->d_str);
 	return (data);
 }

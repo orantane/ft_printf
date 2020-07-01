@@ -6,13 +6,13 @@
 /*   By: orantane <orantane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 14:23:10 by orantane          #+#    #+#             */
-/*   Updated: 2020/06/10 20:48:39 by orantane         ###   ########.fr       */
+/*   Updated: 2020/07/01 15:41:49 by orantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-t_data	*fill_struct(t_data *data)
+t_data			*fill_struct(t_data *data)
 {
 	data = fill_flag(data);
 	data = fill_width(data);
@@ -23,7 +23,7 @@ t_data	*fill_struct(t_data *data)
 	return (data);
 }
 
-t_data	*reformat_struct(t_data *data)
+t_data			*reformat_struct(t_data *data)
 {
 	int		i;
 
@@ -47,7 +47,7 @@ t_data	*reformat_struct(t_data *data)
 	return (data);
 }
 
-t_data	*format_struct(t_data *data)
+t_data			*format_struct(t_data *data)
 {
 	data->len = 0;
 	data->i = 0;
@@ -57,19 +57,8 @@ t_data	*format_struct(t_data *data)
 	return (data);
 }
 
-int		ft_printf(const char *format, ...)
+static t_data	*ft_printf_loop(t_data *data)
 {
-	t_data	*data;
-	int		ret;
-
-	ret = 0;
-	if (!format)
-		return (-1);
-	if (!(data = (t_data *)malloc(sizeof(t_data))))
-		return (-1);
-	data->format = format;
-	va_start(data->args, format);
-	data = format_struct(data);
 	while (data->format[data->i] != '\0')
 	{
 		if (data->format[data->i] == '%')
@@ -85,6 +74,23 @@ int		ft_printf(const char *format, ...)
 			data->i++;
 		}
 	}
+	return (data);
+}
+
+int				ft_printf(const char *format, ...)
+{
+	t_data	*data;
+	int		ret;
+
+	ret = 0;
+	if (!format)
+		return (-1);
+	if (!(data = (t_data *)malloc(sizeof(t_data))))
+		return (-1);
+	data->format = format;
+	va_start(data->args, format);
+	data = format_struct(data);
+	data = ft_printf_loop(data);
 	ret = data->len;
 	va_end(data->args);
 	free(data);

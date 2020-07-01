@@ -6,13 +6,28 @@
 /*   By: orantane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 12:47:38 by orantane          #+#    #+#             */
-/*   Updated: 2020/03/12 15:21:16 by orantane         ###   ########.fr       */
+/*   Updated: 2020/07/01 17:16:15 by orantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static char	*final_str(char *nbr, int len, int neg)
+static t_double	*fix(t_double *dub, char size)
+{
+	if (dub->ld < 1 && size == 'L')
+	{
+		dub->fix = 1;
+		dub->ld = dub->ld + 1;
+	}
+	else if (dub->d < 1)
+	{
+		dub->fix = 1;
+		dub->d = dub->d + 1;
+	}
+	return (dub);
+}
+
+static char		*final_str(char *nbr, int len, int neg, t_double *dub)
 {
 	char	*str;
 	int		i;
@@ -22,15 +37,14 @@ static char	*final_str(char *nbr, int len, int neg)
 	i = (int)ft_strlen(nbr);
 	if (neg == 1)
 		i++;
-	if (!(str = (char *)malloc(sizeof(char) * i + 2)))
-		return (NULL);
+	str = ft_strnew(i + 2);
 	i = 0;
 	while (nbr[j] != '\0')
 	{
-		if (neg == 1)
+		if (dub->fix == 1)
 		{
-			str[i++] = '-';
-			neg = 0;
+			nbr[j] -= 1;
+			dub->fix = 0;
 		}
 		if (i == len)
 			str[i++] = '.';
@@ -41,30 +55,60 @@ static char	*final_str(char *nbr, int len, int neg)
 	return (str);
 }
 
-char		*do_rounding(char *str, t_double *dub, t_data *data, int len)
+char			*do_rounding_l(char *str, t_double *dub, t_data *data, int len)
+{
+	char		*temp;
+	long double	l_copy;
+
+	dub = fix(dub, data->conversion_size[0]);
+	while (--dub->pres > 0)
+		dub->ld *= 10;
+	l_copy = dub->ld - (long long int)dub->ld;
+	l_copy = l_copy * 10;
+	if ((int)l_copy >= 5)
+	{
+		if ((int)l_copy > 5)
+			dub->ld++;
+		if ((int)l_copy == 5 && (int)dub->d % 2 != 0 && dub->fix == 1 &&
+			(int)dub->d >= 100)
+			dub->d++;
+		if ((int)l_copy == 5 && (int)dub->ld % 2 != 0 && dub->fix == 0)
+			dub->ld++;
+	}
+	temp = ft_itoa((long long int)dub->ld);
+	dub = init_dub(dub, data);
+	while (--dub->pres > 0)
+		dub->ld = dub->ld / 10;
+	str = ft_itoa((long long int)dub->ld);
+	len = (int)ft_strlen(str);
+	return (final_str(temp, len, data->negative, dub));
+}
+
+char			*do_rounding(char *str, t_double *dub, t_data *data, int len)
 {
 	char		*temp;
 	double		copy;
-	long double	l_copy;
 
+	dub = fix(dub, data->conversion_size[0]);
 	while (--dub->pres > 0)
-		dub->d_copy *= 10;
-	if (data->conversion_size[0] == 'L')
+		dub->d *= 10;
+	copy = dub->d - (long long int)dub->d;
+	copy = copy * 10;
+	if ((int)copy >= 5)
 	{
-		l_copy = dub->ld_copy - (int)dub->ld_copy;
-		l_copy = l_copy * 10;
-		if ((int)l_copy >= 5)
-			dub->ld_copy++;
-		temp = ft_itoa((long long int)dub->ld_copy);
+		if ((int)copy > 5)
+			dub->d++;
+		if ((int)copy == 5 && (int)dub->d % 2 != 0 && dub->fix == 1 &&
+			(int)dub->d >= 100)
+			dub->d++;
+		else if ((int)copy == 5 && (int)dub->d % 2 != 0 && dub->fix == 0)
+			dub->d++;
 	}
-	else
-	{
-		copy = dub->d_copy - (int)dub->d_copy;
-		copy = copy * 10;
-		if ((int)copy >= 5)
-			dub->d_copy++;
-		temp = ft_itoa((long long int)dub->d_copy);
-	}
-	str = final_str(temp, len, dub->neg);
-	return (str);
+	temp = ft_itoa((long long int)dub->d);
+	dub = init_dub(dub, data);
+	while (--dub->pres > 0)
+		dub->d = dub->d / 10;
+	str = ft_itoa((long long int)dub->d);
+	len = (int)ft_strlen(str);
+	return (final_str(temp, len, data->negative, dub));
 }
