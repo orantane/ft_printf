@@ -16,3 +16,5 @@ With the flags:
 - hh, h, l, ll, L, #, 0, -, +, space.
 
 The function also handles field-width and precision modifiers.
+
+During this project, I used the git provided by the school, so there are not that many commits here on github.
