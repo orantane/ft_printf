@@ -6,7 +6,7 @@
 /*   By: orantane <orantane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 15:21:06 by orantane          #+#    #+#             */
-/*   Updated: 2020/03/12 15:29:12 by orantane         ###   ########.fr       */
+/*   Updated: 2020/07/01 18:12:54 by orantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ t_data			*fill_flags(t_data *data)
 
 static t_data	*converter_2(t_data *data)
 {
+	if (data->conversion_flag == 'f')
+		data = convert_f(data);
 	if (data->conversion_flag == 'c' || data->conversion_flag == '%')
 		data = convert_c(data);
 	if (data->conversion_flag == 's')
@@ -53,7 +55,7 @@ t_data			*converter(t_data *data)
 {
 	char *str;
 
-	str = ft_strnew(50);
+	str = ft_strnew(100);
 	if (data->conversion_flag == 'x')
 	{
 		data->hex = 1;
@@ -72,8 +74,8 @@ t_data			*converter(t_data *data)
 		data->base = 8;
 		data = convert_x(data, str);
 	}
+	if (data->conversion_flag == 'b')
+		data = convert_b(data, str);
 	free(str);
-	if (data->conversion_flag == 'f')
-		data = convert_f(data);
 	return (converter_2(data));
 }

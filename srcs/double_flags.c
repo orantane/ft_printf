@@ -6,7 +6,7 @@
 /*   By: orantane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 08:49:53 by orantane          #+#    #+#             */
-/*   Updated: 2020/07/01 17:29:38 by orantane         ###   ########.fr       */
+/*   Updated: 2020/07/01 18:27:20 by orantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static t_data	*double_flags_cont(t_data *data, char *str)
 			write(1, "-", 1);
 			data->len++;
 		}
-		data = do_plus(data);
+		data = do_plus_d(data);
 	}
 	data = print_number(data, str);
 	if (data->hash == 1 && data->precision == 0)

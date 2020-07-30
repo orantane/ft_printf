@@ -6,7 +6,7 @@
 /*   By: orantane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 12:47:38 by orantane          #+#    #+#             */
-/*   Updated: 2020/07/01 17:16:15 by orantane         ###   ########.fr       */
+/*   Updated: 2020/07/01 17:55:08 by orantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,22 +65,20 @@ char			*do_rounding_l(char *str, t_double *dub, t_data *data, int len)
 		dub->ld *= 10;
 	l_copy = dub->ld - (long long int)dub->ld;
 	l_copy = l_copy * 10;
-	if ((int)l_copy >= 5)
-	{
-		if ((int)l_copy > 5)
-			dub->ld++;
-		if ((int)l_copy == 5 && (int)dub->d % 2 != 0 && dub->fix == 1 &&
-			(int)dub->d >= 100)
-			dub->d++;
-		if ((int)l_copy == 5 && (int)dub->ld % 2 != 0 && dub->fix == 0)
-			dub->ld++;
-	}
+	if ((int)l_copy > 5)
+		dub->ld++;
+	if ((int)l_copy == 5 && (int)dub->ld % 2 != 0 && dub->fix == 1 &&
+		(int)dub->ld >= 100)
+		dub->ld++;
+	if ((int)l_copy == 5 && (int)dub->ld % 2 != 0 && dub->fix == 0)
+		dub->ld++;
 	temp = ft_itoa((long long int)dub->ld);
 	dub = init_dub(dub, data);
 	while (--dub->pres > 0)
 		dub->ld = dub->ld / 10;
 	str = ft_itoa((long long int)dub->ld);
 	len = (int)ft_strlen(str);
+	free(str);
 	return (final_str(temp, len, data->negative, dub));
 }
 
@@ -94,21 +92,19 @@ char			*do_rounding(char *str, t_double *dub, t_data *data, int len)
 		dub->d *= 10;
 	copy = dub->d - (long long int)dub->d;
 	copy = copy * 10;
-	if ((int)copy >= 5)
-	{
-		if ((int)copy > 5)
-			dub->d++;
-		if ((int)copy == 5 && (int)dub->d % 2 != 0 && dub->fix == 1 &&
-			(int)dub->d >= 100)
-			dub->d++;
-		else if ((int)copy == 5 && (int)dub->d % 2 != 0 && dub->fix == 0)
-			dub->d++;
-	}
+	if ((int)copy > 5)
+		dub->d++;
+	if ((int)copy == 5 && (int)dub->d % 2 != 0 && dub->fix == 1 &&
+		(int)dub->d >= 100)
+		dub->d++;
+	else if ((int)copy == 5 && (int)dub->d % 2 != 0 && dub->fix == 0)
+		dub->d++;
 	temp = ft_itoa((long long int)dub->d);
 	dub = init_dub(dub, data);
 	while (--dub->pres > 0)
 		dub->d = dub->d / 10;
 	str = ft_itoa((long long int)dub->d);
 	len = (int)ft_strlen(str);
+	free(str);
 	return (final_str(temp, len, data->negative, dub));
 }

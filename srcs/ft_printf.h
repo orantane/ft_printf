@@ -6,7 +6,7 @@
 /*   By: orantane <orantane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 14:36:36 by orantane          #+#    #+#             */
-/*   Updated: 2020/07/01 17:22:46 by orantane         ###   ########.fr       */
+/*   Updated: 2020/07/01 18:13:27 by orantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ t_data				*convert_s(t_data *data);
 t_data				*convert_c(t_data *data);
 t_data				*convert_d_i(t_data *data);
 t_data				*convert_x(t_data *data, char *str);
+t_data				*convert_b(t_data *data, char *str);
 t_data				*convert_xc(t_data *data, char *str);
 t_data				*convert_u(t_data *data);
 t_data				*convert_f(t_data *data);

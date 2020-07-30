@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   convert_f.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: orantane <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: orantane <orantane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 05:11:36 by orantane          #+#    #+#             */
-/*   Updated: 2020/07/01 17:12:36 by orantane         ###   ########.fr       */
+/*   Updated: 2020/07/01 17:58:41 by orantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ static t_data	*double_string_d(t_double *dub, t_data *data)
 t_data			*convert_f(t_data *data)
 {
 	t_double	*dub;
+	double		d;
+	long double	ld;
 
 	if (!(dub = (t_double*)malloc(sizeof(dub))))
 		return (data);
@@ -67,15 +69,18 @@ t_data			*convert_f(t_data *data)
 	dub->fix = 0;
 	if (data->conversion_size[0] == 'L')
 	{
-		dub->ld = (va_arg(data->args, long double));
+		ld = (va_arg(data->args, long double));
+		dub->ld = ld;
 		data = double_string_ld(dub, data);
 	}
 	else
 	{
-		dub->d = (va_arg(data->args, double));
+		d = (va_arg(data->args, double));
+		dub->d = d;
 		data = double_string_d(dub, data);
 	}
 	data = double_flags(data, data->d_str);
 	free(data->d_str);
+	free(dub);
 	return (data);
 }

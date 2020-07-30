@@ -6,14 +6,14 @@
 /*   By: orantane <orantane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 12:27:33 by orantane          #+#    #+#             */
-/*   Updated: 2020/03/12 17:22:16 by orantane         ###   ########.fr       */
+/*   Updated: 2020/07/01 18:00:49 by orantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 /*
-** Checks for field_width but not user errors, add it later.
+** Checks for field_width.
 */
 
 t_data	*fill_width(t_data *data)
@@ -52,10 +52,6 @@ t_data	*fill_precision(t_data *data)
 	}
 	return (data);
 }
-
-/*
-** No error checking in this function yet. Need to add it later.
-*/
 
 t_data	*fill_size(t_data *data)
 {

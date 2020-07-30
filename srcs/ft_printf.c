@@ -6,7 +6,7 @@
 /*   By: orantane <orantane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 14:23:10 by orantane          #+#    #+#             */
-/*   Updated: 2020/07/01 15:41:49 by orantane         ###   ########.fr       */
+/*   Updated: 2020/07/01 18:04:20 by orantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ t_data			*format_struct(t_data *data)
 {
 	data->len = 0;
 	data->i = 0;
-	data->type = "cCsSpdDioOuUxXf%";
+	data->type = "cCsSpdDioOuUxXfb%";
 	data->flags = "#0+- ";
 	data->size = "hhllL";
 	return (data);
